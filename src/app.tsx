@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {createRoot} from 'react-dom/client';
 import MainPage from './pages/MainPage';
+import './events';
 
 var container = document.createElement('div');
 document.body.appendChild(container);

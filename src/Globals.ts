@@ -1,4 +1,4 @@
-import { WebGLController } from "./webgl/WebGLController";
+import { WebGLController } from "./webgl/controller/WebGLController";
 
 export class Globals{
     static webGLController = new WebGLController();

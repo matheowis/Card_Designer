@@ -2,7 +2,7 @@ import * as React from 'react';
 import {createUseStyles} from 'react-jss';
 import SideToolBar from '../components/SideToolBar';
 import UpperToolBar from '../components/UpperToolBar';
-
+import {Globals} from '../Globals'
 var useStyles = createUseStyles(() => ({
     column:{
         width:'100%',
@@ -17,25 +17,29 @@ var useStyles = createUseStyles(() => ({
         backgroundColor:'#f0f',
     },
     canvasContainer:{
-        flex:10
+        flex:10,
+        position:'relative',
     }
     
 }));
 
 const MainPage = () => {
     var cs = useStyles();
-    var canvRef = React.useRef<HTMLCanvasElement>();
+    var canvContainerRef = React.useRef<HTMLDivElement>();
+    // var canvRef = React.useRef<HTMLCanvasElement>();
 
     React.useLayoutEffect(() => {
-        console.dir(canvRef.current);
+        if(!canvContainerRef.current) return;
+
+        Globals.webGLController.init(canvContainerRef.current);
     })
 
     return (
         <div className={cs.column}>
             <UpperToolBar />
             <div className={cs.row}>
-                <div className={cs.canvasContainer}>
-                    <canvas id='main-canvas' ref={canvRef}/>
+                <div className={cs.canvasContainer} ref={canvContainerRef}>
+                    <canvas id='main-canvas' style={{position:'absolute',left:0,top:0}}/>
                 </div>
                 <SideToolBar />
             </div>
